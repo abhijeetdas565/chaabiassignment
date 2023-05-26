@@ -1,0 +1,17 @@
+Q7. Calculate the factorial of a number using lambda function.
+
+Solution:-
+
+factorial = lambda n: 1 if n == 0 else n * factorial(n - 1)
+
+# Input number from user
+number = int(input("Enter a number: "))
+
+# Calculate factorial using lambda function
+result = factorial(number)
+print("Factorial of", number, "is", result)
+
+Output:-
+
+Enter a number: 5
+Factorial of 5 is 120
