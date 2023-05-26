@@ -1,1 +1,307 @@
+1)
 
+def selection_sort(arr):
+    # Traverse through all array elements
+    for i in range(len(arr)):
+        # Find the minimum element in remaining unsorted array
+        min_idx = i
+        for j in range(i+1, len(arr)):
+            if arr[j] < arr[min_idx]:
+                min_idx = j       
+        # Swap the found minimum element with the first element
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]    
+    return arr
+# Example 
+input_list = [5, 416, 54, 21, 6135, 15, 741]
+sorted_list = selection_sort(input_list)
+print(sorted_list)
+
+
+Output:-
+[5, 15, 21, 54, 416, 741, 6135]
+
+
+
+2)
+
+def get_file_type(extension_type_list, file_list):
+    extension_type_pairs = [pair.split(",") for pair in extension_type_list.split(";")]
+    extension_type_dict = {pair[0]: pair[1] for pair in extension_type_pairs}
+    
+    file_type_dict = {}
+    for file_name in file_list:
+        if "." in file_name:
+            extension = file_name.split(".")[-1]
+            if extension in extension_type_dict:
+                file_type_dict[file_name] = extension_type_dict[extension]
+            else:
+                file_type_dict[file_name] = "unknown"
+        else:
+            file_type_dict[file_name] = "unknown"
+    return file_type_dict
+
+# Example usage
+extension_type_list = "xls,spreadsheet;xlsx,spreadsheet;jpg,image"
+file_list = ["abc.jpg", "xyz.xls", "text.csv", "123"]
+result = get_file_type(extension_type_list, file_list)
+print(result)
+
+
+Output:-
+
+{'abc.jpg': 'image', 'xyz.xls': 'spreadsheet', 'text.csv': 'unknown', '123': 'unknown'}
+
+3)
+
+def sort_list_of_dicts(lst, key):
+    return sorted(lst, key=lambda x: x[key])
+
+
+input_list = [
+    {"fruit": "orange", "color": "orange"},
+    {"fruit": "apple", "color": "red"},
+    {"fruit": "banana", "color": "yellow"},
+    {"fruit": "blueberry", "color": "blue"}
+]
+
+sorted_list = sort_list_of_dicts(input_list, "fruit")
+print(sorted_list)
+
+sorted_list = sort_list_of_dicts(input_list, "color")
+print(sorted_list)
+
+
+
+Output:-
+
+[{'fruit': 'apple', 'color': 'red'}, 
+{'fruit': 'banana', 'color': 'yellow'}, 
+{'fruit': 'blueberry', 'color': 'blue'}, 
+{'fruit': 'orange', 'color': 'orange'}]
+
+[{'fruit': 'blueberry', 'color': 'blue'}, 
+{'fruit': 'orange', 'color': 'orange'}, 
+{'fruit': 'apple', 'color': 'red'}, 
+{'fruit': 'banana', 'color': 'yellow'}]
+
+
+
+
+4)
+
+def switch_dict_keys_values(d):
+    return {value: key for key, value in d.items()}
+
+
+original_dict = {
+    "key1": "value1",
+    "key2": "value2",
+    "key3": "value3",
+    "key4": "value4",
+    "key5": "value5"
+}
+
+switched_dict = switch_dict_keys_values(original_dict)
+print(switched_dict)
+
+
+Output:-
+
+{'value1': 'key1', 
+'value2': 'key2', 
+'value3': 'key3', 
+'value4': 'key4', 
+'value5': 'key5'}
+
+
+5)
+
+def compare_lists(list1, list2):
+    set1 = set(list1)
+    set2 = set(list2)
+
+    common_elements = list(set1.intersection(set2))
+    not_common_elements = list(set1.symmetric_difference(set2))
+
+    return sorted(common_elements), sorted(not_common_elements)
+
+Mainstream = ["One Punch Man", "Attack On Titan", "One Piece", "Sword Art Online", "Bleach", "Dragon Ball Z", "One Piece"]
+must_watch = ["Full Metal Alchemist", "Code Geass", "Death Note", "Stein's Gate", "The Devil is a Part Timer!", "One Piece", "Attack On Titan"]
+
+common, not_common = compare_lists(Mainstream, must_watch)
+print(common)
+print(not_common)
+
+
+Output:-
+
+
+['Attack On Titan', 'One Piece']
+['Bleach', 'Code Geass', 'Death Note', 'Dragon Ball Z', 
+'Full Metal Alchemist', 'One Punch Man', "Stein's Gate", 
+'Sword Art Online', 'The Devil is a Part Timer!']
+
+
+6)
+
+def sub_list_with_every_other_element(lst, start_index, end_index):
+    sub_list = lst[start_index:end_index+1:2]
+    return sub_list
+
+# Example usage
+lst = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41]
+start_index = 2
+end_index = 9
+
+result = sub_list_with_every_other_element(lst, start_index, end_index)
+print(result)
+
+
+Output:-
+
+
+[5, 11, 17, 23]
+
+
+7)
+
+Solution:-
+
+factorial = lambda n: 1 if n == 0 else n * factorial(n - 1)
+
+# Input number from user
+number = int(input("Enter a number: "))
+
+# Calculate factorial using lambda function
+result = factorial(number)
+print("Factorial of", number, "is", result)
+
+Output:-
+
+Enter a number: 5
+Factorial of 5 is 120
+
+
+8)
+
+
+from functools import reduce
+
+A0 = dict(zip(('a', 'b', 'c', 'd', 'e'), (1, 2, 3, 4, 5)))
+A1 = range(10)
+A2 = sorted([i for i in A1 if i in A0])
+A3 = sorted([A0[s] for s in A0])
+A4 = [i for i in A1 if i in A3]
+A5 = {i: i*i for i in A1}
+A6 = [[i, i*i] for i in A1]
+A7 = reduce(lambda x, y: x+y, [10, 23, -45, 33])
+A8 = map(lambda x: x*2, [1, 2, 3, 4])
+A9 = filter(lambda x: len(x) > 3, ["I", "want", "to", "learn", "python"])
+
+# Final Values
+print("A0:", A0)
+print("A1:", list(A1))
+print("A2:", A2)
+print("A3:", A3)
+print("A4:", A4)
+print("A5:", A5)
+print("A6:", A6)
+print("A7:", A7)
+print("A8:", list(A8))
+print("A9:", list(A9))
+
+
+Output:-
+
+
+A0: {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+A1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+A2: []
+A3: [1, 2, 3, 4, 5]
+A4: [1, 2, 3, 4, 5]
+A5: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81}
+A6: [[0, 0], [1, 1], [2, 4], [3, 9], [4, 16], [5, 25], [6, 36], [7, 49], [8, 64], [9, 81]]
+A7: 21
+A8: [2, 4, 6, 8]
+A9: ['want', 'learn', 'python']
+
+
+
+9)
+
+from datetime import datetime, timedelta
+
+def check_date_difference(from_date, to_date, difference):
+    # Convert string dates to datetime objects
+    from_date_obj = datetime.strptime(from_date, '%y-%m-%d')
+    to_date_obj = datetime.strptime(to_date, '%y-%m-%d')
+    # Calculate the difference between the dates
+    date_diff = abs((to_date_obj - from_date_obj).days)
+
+    # Check if the difference is less than the specified number of days
+    if date_diff < difference:
+        return True
+    else:
+        return False
+# Example usage
+from_date = '21-01-01'
+to_date = '21-01-15'
+difference = 20
+
+result = check_date_difference(from_date, to_date, difference)
+print(result)
+
+
+Output:-
+
+True
+
+
+
+10)
+
+from datetime import datetime, timedelta
+
+def get_date_before(date, n):
+    # Convert string date to datetime object
+    date_obj = datetime.strptime(date, '%y-%m-%d')
+
+    # Calculate the date before by subtracting timedelta
+    date_before = date_obj - timedelta(days=n)
+
+    # Convert date_before back to string representation
+    date_before_str = date_before.strftime('%y-%m-%d')
+
+    return date_before_str
+
+# Example usage
+date = '16-12-10'
+n = 11
+
+result = get_date_before(date, n)
+print(result)
+
+
+Output
+
+16-11-29
+
+
+
+
+11)
+
+def f(x, l=[]):
+    for i in range(x):
+        l.append(i*i)
+    print(l)
+
+f(2)
+f(3, [3, 2, 1])
+f(3)
+
+Output:-
+
+[0, 1]
+[3, 2, 1, 0, 1, 4]
+[0, 1, 0, 1, 4]
